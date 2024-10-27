@@ -1,0 +1,121 @@
+body {
+    background-color: #bdbad2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 8px 16px;
+    font-size: 25px;
+}
+
+.login-container {
+    width: 400px; /* Fixed width */
+    padding: 3rem; /* Consistent padding */
+    min-height: 500px; /* Minimum height */
+    background-color: #afaac8;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 5%; /* Rounded corners */
+    text-align: center;
+    color: black;
+    box-sizing: border-box; /* Ensures padding is included in total width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto; /* Centers the container */
+    
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        width: 90%; /* Responsive width on small screens */
+        min-height: 400px; /* Adjusted minimum height */
+    }
+}
+
+h2 {
+    margin-bottom: 1.5rem; /* Space below heading */
+    font-size: 2rem; /* Heading font size */
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 1.3rem; /* Label font size */
+}
+
+input[type="text"], input[type="password"] {
+    width: 92%; /* Full width for inputs */
+    padding: 0.75rem; /* Padding for input fields */
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    /*border: 1px solid #ddd;*/
+    border: none;
+    border-radius: 5%; /* Consistent border radius */
+    font-size: 1.1rem; /* Input font size */
+    background-color: #afaac8;
+}
+
+button {
+    width: 90%; /* Button width */
+    padding: 0.75rem; /* Button padding */
+    margin: 0 auto; /* Centers the button */
+    background-color: #324a5f;
+    border: none;
+    color: white;
+    border-radius: 5%; /* Consistent border radius */
+    cursor: pointer;
+    font-size: 1.1rem; /* Button font size */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button:hover {
+    background-color: #ccc9dc; /* Hover effect */
+    color: black;
+}
+
+.error {
+    color: red; /* Error message color */
+    margin-top: 1.5rem;
+    font-size: 1rem; /* Error message font size */
+}
+
+.login-icon {
+    width: 170px; /* Icon size */
+    height: auto;
+    margin: 15px auto; /* Centers the icon */
+}
+
+.input-container {
+    position: relative; /* Positioning context for the icon */
+    margin-bottom: 1.5rem; /* Space below input */
+}
+
+.input-container input {
+    width: 100%; /* Full width for inputs */
+    padding: 0.75rem 2.5rem; /* Extra left padding for icon space */
+    margin-top: 0.5rem; /* Space above input */
+    border: none; /* Remove all borders */
+    border-bottom: 2px solid black; /* Add a bottom border */
+    border-radius: 0; /* Remove rounded corners */
+    font-size: 1.1rem; /* Font size for input */
+    background-color: transparent; /* Make background transparent */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    outline: none; /* Remove the default outline on focus */
+}
+
+.input-container input:focus {
+    border-bottom: 2px solid #324a5f; /* Optional: Change the color of the bottom border on focus */
+}
+
+.input-container i {
+    position: absolute; /* Absolute positioning within the container */
+    left: 10px; /* Position from the left */
+    top: 38%; /* Adjust this value to move the icon higher */
+    transform: translateY(-50%); /* Center vertically */
+    color: #324a5f; /* Icon color */
+    pointer-events: none; /* Prevent mouse events on the icon */
+    font-size: 1.2rem; /* Adjust icon size as needed */
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request</title>
+    <style>
+        /* Basic styling for the modal */
+        #leave-request-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: block;
+            z-index: 1000;
+        }
+        
+        /* Styles for the leave request form */
+        #leave-request-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="leave-request-modal">
+        <h2>Request Leave</h2>
+        <form id="leave-request-form">
+            <label for="requester-name">Name:</label>
+            <input type="text" id="requester-name" name="name" required>
+
+            <label for="requester-branch">Branch:</label>
+            <input type="text" id="requester-branch" name="branch" required>
+
+            <label for="requester-phone-number">Phone Number:</label>
+            <input type="text" id="requester-phone-number" name="phoneNumber" required>
+
+            <label for="requester-email">Email:</label>
+            <input type="email" id="requester-email" name="email" required>
+
+            <label for="leave-start-date">Date of Leave:</label>
+            <input type="date" id="leave-start-date" name="dateOfLeave" required>
+
+            <label for="leave-end-date">Date of Return:</label>
+            <input type="date" id="leave-end-date" name="dateOfReturn" required>
+
+            <button type="button" onclick="submitLeaveRequest()">Submit</button>
+            <button type="button" onclick="closeLeaveRequestForm()">Close</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to submit the leave request
+        async function submitLeaveRequest() {
+            const formData = new FormData(document.getElementById('leave-request-form'));
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch('/api/leave-requests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Leave request submitted successfully!');
+                closeLeaveRequestForm(); // Close the form after submission
+            } else {
+                alert('Error submitting leave request. Please try again.');
+            }
+        }
+
+        // Function to close the leave request form
+        function closeLeaveRequestForm() {
+            window.location.href = 'student.html'; // Redirect back to student page
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ccc9dc; /* Optional background for the page */
+}
+
+.top-bar {
+    background-color: #afaac8; /* Lavender shade */
+    padding: 20px;
+    position: relative; /* Enable absolute positioning for the logout link */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center items vertically */
+}
+
+.top-bar h2.search {
+    font-size: 2.5em; /* Increased font size */
+    color: #1b2a41; /* Darker shade for contrast */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow */
+    margin: 0; /* Remove default margin */
+}
+
+.logout-btn {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    font-size: 18px; /* Font size */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px; /* Increase padding for better visibility */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #324a5f; /* Transparent background */
+    transition: background-color 0.3s, transform 0.3s; /* Transition for hover effects */
+    position: absolute; /* Position it at the top right corner */
+    right: 20px; /* Distance from the right */
+    top: 20px; /* Distance from the top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35); /* Default shadow for depth */
+}
+
+/* Logout button hover effect */
+.logout-btn:hover {
+     /* Light background on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    background-color:#1b2a41 ;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+     
+}
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    padding: 8px 15px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Container for the entire input section */
+/* Container styling for the search bar */
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px auto;
+    max-width: 600px; /* Increased width for larger screens */
+    width: 100%; /* Full width on smaller screens */
+    background-color: #e4e0f5;
+    padding: 12px 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+/* Styling for the search icon */
+.search-icon {
+    color: #6d5d99; /* Richer lavender color for icon */
+    font-size: 1.5em; /* Larger icon size */
+    margin-right: 12px; /* Space between icon and input */
+}
+
+/* Styling for the input field */
+.input input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 1.1em;
+    background-color: #d1c8e6;
+    color: #3d2d5f;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    width: 100%; /* Allows input to use the full width */
+    transition: background-color 0.3s ease;
+}
+
+/* Styling for the search button */
+.input button {
+    padding: 12px 20px; /* Larger padding for button */
+    font-size: 1.1em; /* Increased font size */
+    color: #ffffff;
+    background-color: #3f5773; /* Rich lavender-blue color */
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer;
+    margin-left: 12px; /* Space between input and button */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+/* Button hover and active effect */
+.input button:hover {
+    background-color: #2d3e58; /* Darker shade on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.input button:active {
+    transform: translateY(1px); /* Pressed effect */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    .input {
+        width: 95%;
+        padding: 8px 10px;
+    }
+
+    .input input[type="text"], 
+    .input button {
+        font-size: 0.9em; /* Adjust font size */
+        padding: 6px 10px; /* Reduce padding */
+    }
+}
+
+.search-instruction {
+    text-align: center; /* Center the text */
+    font-size: 1.5em; /* Font size */
+    color: #4b3c72; /* Text color */
+    margin-bottom: 10px; /* Space below the instruction */
+}
+
+.result-card{
+    background-color: #afaac8;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    color: #0c1821;
+    padding: 20px;
+    margin: 10px;
+}

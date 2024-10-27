@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="styleqr.css"> <!-- Link to the CSS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="content"> <!-- Container for content -->
+        <h1>Your QR</h1>
+        <h3>Use this for fast and easy travel in and out of the campus.</h3>
+        <div class="qr-container"> <!-- Container for QR code -->
+            <div id="qrcode"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to get roll number from URL
+        function getRollNumber() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('rollNumber');
+        }
+
+        // Generate QR code
+        const rollNumber = getRollNumber();
+        if (rollNumber) {
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: rollNumber,
+                width: 400, // Size in pixels
+                height: 400,
+            });
+        }
+    </script>
+</body>
+</html>

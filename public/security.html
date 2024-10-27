@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Page</title>
+    <link rel="stylesheet" href="security.css">
+    <script src="https://docs.opencv.org/4.x/opencv.js" async></script>
+    <style>
+        video {
+            width: 320px;
+            height: auto;
+        }
+        canvas {
+            display: none; /* Hide the canvas for processing */
+        }
+        #scanSection {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h2 class="welcome-text">Welcome to the Security Page</h2>
+        <a href="/" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="content">
+        <h2 class="scan-heading">Choose an Option</h2>
+        <div class="button-container">
+            <button onclick="window.location.href='results1.html'">Outing Requests</button>
+            <button onclick="window.location.href='results2.html'">Student Time Data</button>
+            <button onclick="showScanSection()">Scan QR Code</button>
+        </div>
+
+        <!-- QR Code Scan Section -->
+        <div id="scanSection">
+            <h2>QR Code Scanner</h2>
+            <video id="video" autoplay></video>
+            <canvas id="canvas"></canvas>
+            <div id="qrText" style="margin-top: 20px; font-size: 1.2em; color: #000;"></div> <!-- Display QR code text here -->
+            <button onclick="closeScanSection()">Close QR</button> <!-- Close QR Button -->
+        </div>
+    </div>
+
+    <script>
+        let video = document.getElementById('video');
+        let canvas = document.getElementById('canvas');
+        let context = canvas.getContext('2d');
+        let qrText = document.getElementById('qrText');
+
+        function showScanSection() {
+            const scanSection = document.getElementById('scanSection');
+            scanSection.style.display = 'block'; // Show the QR scan section
+            startCamera();
+        }
+
+        function closeScanSection() {
+            const scanSection = document.getElementById('scanSection');
+            scanSection.style.display = 'none'; // Hide the QR scan section
+            stopCamera(); // Stop the camera when closing
+        }
+
+        async function startCamera() {
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.setAttribute('playsinline', true);
+                video.play();
+            } catch (error) {
+                console.error("Error accessing the camera:", error);
+                alert("Could not access the camera. Please check your permissions.");
+            }
+        }
+
+        function stopCamera() {
+            let stream = video.srcObject;
+            if (stream) {
+                let tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+            }
+            video.srcObject = null; // Clear the video source
+        }
+
+        async function searchRollNumber(decodedText) {
+            try {
+                console.log("entered");
+                const response = await fetch('http://localhost:3000/records'); // Fetch records from the backend
+                const records = await response.json();
+        
+                let record = records.find(r => r.rollNumber === decodedText);
+                const currentTime = new Date().toISOString();
+        
+                if (record) {
+                    if (record.inTime && !record.outTime) {
+                        record.outTime = currentTime;
+                        alert(`Out time recorded for roll number ${decodedText} at ${currentTime}`);
+                    } else if (record.inTime && record.outTime) {
+                        alert(`Roll number ${decodedText} has already checked in and out.`);
+                    } else if (!record.inTime) {
+                        record.inTime = currentTime;
+                        alert(`In time recorded for roll number ${decodedText} at ${currentTime}`);
+                    }
+                } else {
+                    record = { rollNumber: decodedText, inTime: currentTime, outTime: null };
+                    records.push(record);
+                    alert(`New record created for roll number ${decodedText} with in time at ${currentTime}`);
+                }
+        
+                // Save updated records by posting them back to the server
+                await fetch('http://localhost:3000/update-records', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(records)
+                });
+            } catch (error) {
+                console.error("Error fetching or updating records:", error);
+            }
+        }
+        
+        
+        
+        
+        async function saveRecords(records) {
+            try {
+                const response = await fetch('/saveRecords', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(records)
+                });
+        
+                if (response.ok) {
+                    console.log("Records saved successfully.");
+                } else {
+                    const errorText = await response.text();
+                    console.error("Failed to save records:", errorText);
+                }
+            } catch (error) {
+                console.error("Error saving records:", error);
+            }
+        }
+        
+        
+        
+        // Example of integrating the scanQRCode function
+        function scanQRCode() {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            let imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            let src = cv.matFromImageData(imgData);
+            let dst = new cv.Mat();
+        
+            cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+            cv.GaussianBlur(dst, dst, new cv.Size(5, 5), 0);
+            cv.threshold(dst, dst, 0, 255, cv.THRESH_BINARY | cv.THRESH_OTSU);
+            let qrCodeDetector = new cv.QRCodeDetector();
+            let points = new cv.Mat();
+            let decodedText = qrCodeDetector.detectAndDecode(dst, points);
+        
+            if (decodedText) {
+                qrText.innerText = `QR Code detected: ${decodedText}`;
+                console.log("hello");
+                searchRollNumber(decodedText); // Call to update records
+            }
+        
+            src.delete();
+            dst.delete();
+            points.delete();
+        }
+        
+
+        async function main() {
+            video.addEventListener('loadedmetadata', () => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+            });
+            setInterval(scanQRCode, 1000); // Scan every second
+        }
+
+        main();
+    </script>
+</body>
+</html>

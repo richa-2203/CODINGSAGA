@@ -1,0 +1,90 @@
+[
+  {
+    "name": "ri",
+    "branch": "cse",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-29",
+    "dateOfReturn": "2024-11-02",
+    "createdAt": "2024-10-26T15:10:47.088Z",
+    "status": "Approved"
+  },
+  {
+    "name": "rich",
+    "branch": "cse",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "1111",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-01",
+    "dateOfReturn": "2024-10-28",
+    "createdAt": "2024-10-26T15:35:35.366Z",
+    "status": "Approved"
+  },
+  {
+    "name": "ppp",
+    "branch": "cse",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "46",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-31",
+    "dateOfReturn": "2024-11-04",
+    "createdAt": "2024-10-26T17:00:24.969Z",
+    "status": "Declined"
+  },
+  {
+    "name": "richaaa",
+    "branch": "cse",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "68",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-16",
+    "dateOfReturn": "2024-10-28",
+    "createdAt": "2024-10-26T17:08:55.331Z",
+    "status": "Declined"
+  },
+  {
+    "name": "Richa",
+    "branch": "CSE",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "100",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-28",
+    "dateOfReturn": "2024-10-31",
+    "createdAt": "2024-10-27T17:02:59.855Z",
+    "status": "Approved"
+  },
+  {
+    "name": "Richa Rajashekhar",
+    "branch": "cse",
+    "rollNumber": "cs23bt020",
+    "phoneNumber": "111",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-28",
+    "dateOfReturn": "2024-10-31",
+    "createdAt": "2024-10-27T17:05:57.113Z",
+    "status": "Declined"
+  },
+  {
+    "name": "Prakruthi",
+    "branch": "cse",
+    "rollNumber": "cs23bt062",
+    "phoneNumber": "111",
+    "email": "cs23bt062@iitdh.ac.in",
+    "dateOfLeave": "2024-10-27",
+    "dateOfReturn": "2024-10-28",
+    "createdAt": "2024-10-27T17:11:05.909Z",
+    "status": "Approved"
+  },
+  {
+    "name": "prakruthi",
+    "branch": "cse",
+    "rollNumber": "cs23bt062",
+    "phoneNumber": "1111",
+    "email": "cs23bt020@iitdh.ac.in",
+    "dateOfLeave": "2024-10-29",
+    "dateOfReturn": "2024-10-31",
+    "createdAt": "2024-10-27T17:12:10.642Z",
+    "status": "Declined"
+  }
+]

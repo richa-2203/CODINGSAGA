@@ -1,0 +1,51 @@
+[
+    {
+        "email": "cs23bt020@iitdh.ac.in",
+        "rollNumber":"cs23bt020",
+        "password": "123",
+        "role": "student",
+        "username": "richa"
+    },
+    {
+        "email": "ee23bt017@iitdh.ac.in",
+        "rollNumber":"ee23bt017",
+        "password": "123",
+        "role": "student",
+        "username": "maitreyee"
+    },
+    {
+        "email": "ee23bt058@iitdh.ac.in",
+        "rollNumber":"ee23bt058",
+        "password": "123",
+        "role": "student",
+        "username": "vaish"
+    },
+    {
+        "email": "cs23bt062@iitdh.ac.in",
+        "rollNumber":"cs23bt062",
+        "password": "123",
+        "role": "student",
+        "username": "prakruthi"
+    },
+    {
+        "email": "admin@iitdh.ac.in",
+        "rollNumber":"000",
+        "password": "admin",
+        "role": "admin",
+        "username": "AdminUser"
+    },
+    {
+        "email": "security@iitdh.ac.in",
+        "rollNumber":"000",
+        "password": "security",
+        "role": "security",
+        "username": "SecurityUser"
+    },
+    {
+        "email": "cs23bt060@iitdh.ac.in",
+        "rollNumber":"cs23bt060",
+        "password": "123",
+        "role": "student",
+        "username": "prak"
+    }
+]

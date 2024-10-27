@@ -1,0 +1,153 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    color: #333;
+    background-color: #ccc9dc;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 20vw;
+    height: 100vh;
+    background-color: #000000;
+    color: #fff;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.9em;
+    color: #f3f3f3;
+}
+
+.sidebar .nav {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar .nav li {
+    margin: 1rem 0;
+}
+
+.sidebar .nav li a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    display: block;
+    font-display: 1.2rem;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+
+.sidebar .nav li a:hover {
+    background-color: #142735;
+    color: #fff;
+    border-radius: 5%;
+}
+
+/* Main content styling */
+.main-content {
+    margin-left: 220px; /* Space for the sidebar */
+    width: calc(100% - 220px);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Content area styling */
+.content-area {
+    text-align: center;
+}
+
+.content-area h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content-area p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Centered button styling */
+.check-requests {
+    padding: 12px 25px;
+    font-size: 1em;
+    background-color: #324a5f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.check-requests:hover {
+    background-color: #18263b;
+    color: white;
+}
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logo img {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.logout-container {
+    position: absolute; /* Make the container absolute */
+    bottom: 20px; /* Space from the bottom */
+    left: 0; /* Align to the left */
+    width: 100%; /* Make it full width */
+    padding: 10px 0; /* Optional padding for aesthetics */
+}
+
+.logout-button {
+    padding: 10px 15px;
+    background-color: #000000; /* Bootstrap danger color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Makes the button full width */
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #142735; /* Darker shade on hover */
+}
+
+.toggle-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+    background-color: #333;
+}

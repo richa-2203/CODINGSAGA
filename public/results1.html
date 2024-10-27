@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="results1.css">
+</head>
+<body>
+    <div class="top-bar">
+        <h1 class="search">Approval Status of Students</h1>
+        <a href="security.html" class="logout-btn">Back to Main</a>
+    </div>
+
+    <div class="content">
+        <p class="search-instruction">Search for students by their Roll Numbers:</p>
+        <div class="input">
+        <input type="text" id="searchInput" placeholder="Enter roll number here">
+        <button onclick="performSearch()">Search</button>
+</div>
+        <h2 class="scan-heading">Results for: <span id="keyword"></span></h2>
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script>
+        // Load JSON data from the server
+        async function loadJSON() {
+            const response = await fetch('/data');
+            if (!response.ok) {
+                throw new Error(`Failed to load JSON data: ${response.statusText}`);
+            }
+            const data = await response.json();
+            return data;
+        }
+
+        // Search function to filter data based on the keyword
+        async function search(keyword) {
+            if (!keyword) return [];
+            const data = await loadJSON();
+
+            // Filter items matching the keyword
+            return data.filter(item =>
+                Object.values(item).some(value =>
+                    value.toString().toLowerCase().includes(keyword.toLowerCase())
+                )
+            );
+        }
+
+        // Perform search and display results on the same page
+        async function performSearch() {
+            const keyword = document.getElementById('searchInput').value.trim();
+
+            // Proceed only if there's a keyword
+            if (keyword) {
+                const results = await search(keyword);
+
+                // Display results directly on the page
+                displayResults(results, keyword);
+            }
+        }
+
+        // Function to display results on the page
+        function displayResults(results, keyword) {
+            const resultsContainer = document.getElementById('results');
+            const keywordSpan = document.getElementById('keyword');
+
+            // Display the search keyword as text
+            keywordSpan.textContent = keyword;
+
+            // Clear any previous results
+            resultsContainer.innerHTML = '';
+
+            // Mapping of keys to display text
+            const labelMapping = {
+                name: 'Name',
+                rollNumber: 'Roll Number',
+                branch: 'Branch',
+                phoneNumber: 'Phone Number',
+                dateOfLeave: 'Leave Date',
+                dateOfReturn: 'Return Date',
+                status: 'Status'
+            };
+
+            // Display the results
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const card = document.createElement('div');
+                    card.className = 'result-card';
+
+                    // Display only the desired fields
+                    for (const [key, value] of Object.entries(result)) {
+                        if (labelMapping[key]) { // Check if the key exists in the mapping
+                            const detail = document.createElement('p');
+                            detail.textContent = `${labelMapping[key]}: ${value !== null ? value : 'N/A'}`; // Show 'N/A' for null values
+                            card.appendChild(detail);
+                        }
+                    }
+
+                    resultsContainer.appendChild(card);
+                });
+            } else {
+                resultsContainer.textContent = 'No results found.';
+            }
+        }
+    </script>
+</body>
+</html>

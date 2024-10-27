@@ -1,0 +1,58 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif; /* Change the font family */
+    background-color: #afaac8; /* Light background color */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default margin */
+}
+
+.content {
+    text-align: center; /* Center align text */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #ccc9dc; /* White background for the QR code box */
+    padding: 20px; /* Padding around the QR code */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+    /* display: flex; Use flexbox */
+    justify-content: center; /* Center QR code horizontally */
+    align-items: center; /* Center QR code vertically */
+    width: 40%; /* Fixed width for the box */
+    margin: 0 auto; /* Center the container */
+
+}
+
+h1 {
+    color: #333; /* Change header color */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.qr-container {
+    background-color: #ccc9dc;
+    padding: 20px; /* Padding around the QR code */
+    padding-bottom: 30px;
+    /* border-radius: 10px; Optional: rounded corners */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); Optional: add shadow */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center QR code horizontally */
+    align-items: center; /* Center QR code vertically */
+    /* width: 300px; Fixed width for the box */
+    margin: 0 auto; /* Center the container */
+}
+
+/* #qrcode {
+    width: 5cm;
+    height: 5cm; 
+    margin-top: 10px; 
+} */
+
+/* Adjust the size of the QR code for smaller screens */
+@media (max-width: 600px) {
+    #qrcode {
+        width: 70%; /* Width of the QR code for small screens */
+        height: auto; /* Auto height */
+    }
+}

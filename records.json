@@ -1,0 +1,47 @@
+[
+  {
+    "rollNumber": "ee23bt017",
+    "inTime": "2024-10-27T16:28:28.283Z",
+    "outTime": "2024-10-27T16:28:29.289Z"
+  },
+  {
+    "rollNumber": "ee23bt058",
+    "inTime": "2024-10-27T16:39:09.774Z",
+    "outTime": "2024-10-27T16:39:47.781Z"
+  },
+  {
+    "rollNumber": "ee23bt017",
+    "inTime": "2024-10-27T16:48:15.077Z",
+    "outTime": null
+  },
+  {
+    "rollNumber": "cs23bt020",
+    "inTime": "2024-10-27T16:48:45.293Z",
+    "outTime": "2024-10-27T16:48:46.067Z"
+  },
+  {
+    "rollNumber": "cs23bt020",
+    "inTime": "2024-10-27T16:48:46.067Z",
+    "outTime": "10/27/2024, 10:23:22 PM"
+  },
+  {
+    "rollNumber": "cs23bt060",
+    "inTime": "2024-10-27T16:49:47.297Z",
+    "outTime": "2024-10-27T16:49:48.057Z"
+  },
+  {
+    "rollNumber": "cs23bt060",
+    "inTime": "2024-10-27T16:49:48.057Z",
+    "outTime": "2024-10-27T16:51:08.030Z"
+  },
+  {
+    "rollNumber": "cs23bt060",
+    "inTime": "2024-10-27T16:51:14.306Z",
+    "outTime": "2024-10-27T16:51:17.005Z"
+  },
+  {
+    "rollNumber": "cs23bt060",
+    "inTime": "2024-10-27T16:53:07.324Z",
+    "outTime": "10/27/2024, 10:23:08 PM"
+  }
+]

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="results1.css">
+</head>
+<body>
+    <div class="top-bar">
+        <h2>Student Leave Records</h2>
+        <a href="security.html" class="logout-btn">Back to Main</a>
+    </div>
+
+    <div class="content">
+        <p class="search-instruction">Search for students by their Roll Numbers:</p>
+        <div class="input">
+        <input type="text" id="searchInput" placeholder="Enter roll number">
+        <button onclick="performSearch()">Search</button>
+</div>
+        <h2 class="scan-heading">Results for: <span id="keyword"></span></h2>
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script>
+        // Load JSON data from records.json
+        async function loadJSON() {
+            try {
+                const response = await fetch('/record');
+                if (!response.ok) {
+                    throw new Error(`Failed to load JSON data: ${response.statusText}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error loading JSON:', error);
+            }
+        }
+
+        // Search function to filter data based on the keyword
+        async function search(keyword) {
+            if (!keyword) return [];
+            const data = await loadJSON();
+
+            // Filter items matching the keyword
+            return data.filter(item =>
+                Object.values(item).some(value =>
+                    value !== null && value.toString().toLowerCase().includes(keyword.toLowerCase())
+                )
+            );
+        }
+
+        // Perform search and display results on the same page
+        async function performSearch() {
+            const keyword = document.getElementById('searchInput').value.trim();
+
+            // Proceed only if there's a keyword
+            if (keyword) {
+                const results = await search(keyword);
+
+                // Display results directly on the page
+                displayResults(results, keyword);
+            }
+        }
+
+        // Function to display results on the page
+        function displayResults(results, keyword) {
+            const resultsContainer = document.getElementById('results');
+            const keywordSpan = document.getElementById('keyword');
+
+            // Display the search keyword as text
+            keywordSpan.textContent = keyword;
+
+            // Clear any previous results
+            resultsContainer.innerHTML = '';
+
+            // Define the keys you want to display
+            const keysToDisplay = ['rollNumber', 'inTime', 'outTime']; // Modify this array with the desired keys
+
+            // Mapping of keys to display text
+            const labelMapping = {
+                rollNumber: 'Roll Number',
+                inTime: 'Out Date and Time',
+                outTime:'In Date and Time'
+
+            };
+
+            // Display the results
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const card = document.createElement('div');
+                    card.className = 'result-card';
+
+                    // Add only specified key-value pairs from the result object
+                    for (const key of keysToDisplay) {
+                        if (result.hasOwnProperty(key)) {
+                            const detail = document.createElement('p');
+                            const displayLabel = labelMapping[key] || key; // Use the mapping, or fall back to the key itself
+                            detail.textContent = `${displayLabel} = ${result[key] !== null ? result[key] : 'N/A'}`; // Show 'N/A' for null values
+                            card.appendChild(detail);
+                        }
+                    }
+
+                    resultsContainer.appendChild(card);
+                });
+            } else {
+                resultsContainer.textContent = 'No results found.';
+            }
+        }
+    </script>
+</body>
+</html>

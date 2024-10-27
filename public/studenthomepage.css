@@ -1,0 +1,212 @@
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #afaac8;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#logout-btn {
+    position: absolute; /* Position it in the top-right corner */
+    top: 15px; /* Distance from the top of the page */
+    right: 15px; /* Distance from the right of the page */
+    padding: 5px 10px; /* Reduced padding for a smaller button */
+    background-color: transparent; /* Transparent background */
+    color: #324a5f; /* Text color */
+    font-size: 1.2em; /* Slightly smaller font size */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for color and background */
+    width: 10%;
+}
+
+/* Hover effect for the logout button */
+#logout-btn:hover {
+    color: #1b2a41; /* White text color on hover */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    /* Dark lavender-blue background on hover */
+} 
+
+/* Background Image Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('maps.png'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45; /* Adjust to your preferred opacity */
+    z-index: -1;
+}
+
+/* Centered main-page container */
+/* Main container for centered horizontal layout */
+#main-page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; /* Ensure items are in a row */
+    justify-content: center; /* Center the row horizontally */
+    align-items: center;
+    gap: 30px; /* Space between boxes */
+    margin-top: 100px;
+    padding: 20px;
+}
+
+/* Style for each box button */
+.button-box, .req-box {
+    width: 250px;
+    height: 180px;
+    padding: 20px;
+    background-color: #afaac8; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    min-width: 280px;
+    min-height: 220px; /* Minimum height for each button box */
+    
+    
+}
+
+.button-box p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    font-size: 23px; /* Font size */
+    color: #333; /* Text color */
+    margin: 10px 0; /* Margin above and below */
+    text-align: center; /* Center text alignment */
+}
+
+.button-box:hover {
+    transform: translateY(-6px); /* Hover lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45); /* Slightly deeper shadow */
+}
+
+/* Style for buttons within each box */
+.button-box button, .req-box button {
+    width: 100%;
+    padding: 17px;
+    font-size: 18px;
+    background-color: #324a5f; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.62); /* Shadow effect */
+}
+
+.button-box button:hover, .req-box button:hover {
+    background-color: #1b2a41; /* Darker shade on hover */
+}
+
+/* Optional description text under buttons */
+.button-description {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Logout button at the top-right corner with a standard size */
+/* Logout link styled as a small, subtle link in the top-right corner */
+#logout-link {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    color: #324a5f;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 8px 16px;
+}
+
+#logout-link:hover {
+    color: #1b2a41;
+    text-decoration: underline;
+}
+
+
+/* Centered main-page container */
+#main-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 150px;
+    padding: 20px;
+}
+
+/* Welcome section styling */
+#user-info {
+    text-align: center; /* Center the text */
+    margin: 2px 0; /* Margin above and below */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    font-size: 50px; /* Increased font size for the heading */
+    color: #324a5f; /* Dark color for the text */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.72); /* Subtle text shadow for depth */
+}
+
+/* Styling for the spans within the heading */
+#user-info span {
+    font-size: 50px; /* Slightly larger font size for spans */
+    font-weight: bold; /* Make the span text bold */
+    color: #2c3e50; /* Blue color for the username and roll number */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.72); /* Add text shadow for depth */
+}
+
+@media (max-width: 600px) {
+    #user-info {
+        font-size: 24px; /* Reduce font size on smaller screens */
+    }
+
+    #user-info span {
+        font-size: 20px; /* Reduce span font size */
+    }
+}
+
+/* Welcome section styling */
+#welcome-section {
+    text-align: center; /* Center the text */
+    margin: 10px 0; /* Margin above and below */
+    
+    padding: 20px; /* Padding inside the section */
+   
+}
+
+/* Styling for the welcome message */
+#welcome-message {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    font-size: 50px; /* Increased font size for the welcome message */
+    color: #2c3e50; /* Dark color for the text */
+    text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
+    margin: 0; /* Remove default margin */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.72); /* Add text shadow for depth */
+    
+}
+
+#welcome-message-detail {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Font family */
+    font-size: 27px; /* Font size for the detail message */
+    color: #2c3e50; /* Text color */
+    margin-top: 10px; /* Space above the message */
+    text-align: center; /* Center align the text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="logininterface.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        
+        <img src="iitdh-logo-.png" alt="Login Icon" class="login-icon">
+        <form action="/login" method="POST">
+            <label for="rollNumber">USER-ID</label>
+            <div class="input-container">
+                <input type="text" id="rollNumber" name="rollNumber" required placeholder="Enter Your User ID">
+                <i class="fas fa-user"></i> <!-- Font Awesome icon for Roll Number -->
+            </div>
+
+            <label for="password">PASSWORD</label>
+            <div class="input-container">
+                <input type="password" id="password" name="password" required placeholder="Enter Your Password">
+                <i class="fas fa-lock"></i> <!-- Font Awesome icon for Password -->
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Error message if credentials are invalid -->
+        <script>
+            // Check URL for an 'error' parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                const error = urlParams.get('error');
+                let message = '';
+                
+                // Customize error message
+                if (error === 'invalid') {
+                    message = 'Invalid credentials. Please try again.';
+                } else if (error === 'server') {
+                    message = 'An error occurred. Please try again later.';
+                }
+
+                // Display the error message in the login container
+                const errorMessage = document.createElement('p');
+                errorMessage.classList.add('error');
+                errorMessage.textContent = message;
+                document.querySelector('.login-container').appendChild(errorMessage);
+            }
+        </script>
+    </div>
+</body>
+</html>

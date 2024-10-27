@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <style> 
+        /* Basic styling for the modal */
+         #leave-request-modal {
+            position: fixed;
+             top: 50%;
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+        } 
+
+        #main-page {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Styles for records table */
+        #records-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #records-table th, #records-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #records-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <link rel="stylesheet" href="studentstyle.css">
+    <link rel="stylesheet" href="studenthomepage.css">
+</head>
+<body>
+    <!-- <h2 id="user-info">Welcome !! <span id="username"></span> (<span id="rollNumber"></span>)</h2> -->
+    <!-- <div id="welcome-section">
+        <h2 id="welcome-message">Welcome !!</h2>
+        <p id="user-info"> <span id="username"></span> <span id="rollNumber"></span></p>
+    </div> -->
+    <div id="welcome-section">
+        <h2 id="welcome-message" style="display:inline;">Welcome </h2>
+        <p id="user-info" style="display:inline;">
+            <span id="username"></span> (<span id="rollNumber"></span>)
+            <p id="welcome-message-detail">
+                Welcome to your hub for leave requests.<br>
+                Stay organized and make the most of your time!
+            </p>
+         </div>
+    
+    <div id="main-page">
+        <div class="button-box req-box">
+            <p class="button-description">Taking a Break? Let Us Know!! </p>
+            <p></p>
+            <button id="request-leave-btn">Request Leave</button>
+        </div>
+        <div class="button-box">
+            <p class="button-description">Want To Explore Your Leave History ?? Let's Go!.</p>
+            <button id="view-records-btn">Approval </button>
+        </div>
+        <div class="button-box">
+            <p class="button-description">Explore Your Journey : View your records!</p>
+            <button id="view-all-leave-records-btn">View Records</button>
+           
+        </div>
+        <div class="button-box">
+            <p class="button-description">Unlock Your Digital Identity: Generate Your Personal QR Code!</p>
+            <button id="my-qr-btn">My QR</button>
+           
+        </div>
+    </div>
+    
+    <button id="logout-btn">Logout</button>
+
+
+    <!-- Modal for Leave Request Form (Initially Hidden) -->
+    <div id="leave-request-modal">
+        <form id="leaveRequestForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="branch">Branch:</label>
+            <input type="text" id="branch" name="branch" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="dateOfLeave">Date of Leave:</label>
+            <input type="date" id="dateOfLeave" name="dateOfLeave" required>
+
+            <label for="dateOfReturn">Date of Return:</label>
+            <input type="date" id="dateOfReturn" name="dateOfReturn" required>
+
+            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+    <!-- Table for displaying leave requests -->
+    <div id="records-container" style="display: none;">
+        <h3>Your Leave Records</h3>
+        <table id="records-table">
+            <thead style="color: black;">
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Branch</th>
+                    <th>Date of Leave</th>
+                    <th>Date of Return</th>
+                    <th>Creation Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="records-body">
+                <!-- Records will be populated here -->
+            </tbody>
+        </table>
+        <button onclick="closeRecords()">Close Records</button>
+    </div>
+
+    <!-- Table for displaying JSON records -->
+    <div id="json-records-container" style="display: none;">
+        <h3>Your in and out records</h3>
+        <table id="json-records-table">
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Out Time</th>
+                    <th>Out Date</th>
+                    <th>In Time</th>
+                    <th>In Date</th>
+                </tr>
+            </thead>
+            <tbody id="json-records-body">
+                <!-- JSON records will be populated here -->
+            </tbody>
+        </table>
+        <button onclick="closeJsonRecords()">Close</button>
+    </div>
+    <script>
+        window.onload = async function() {
+            try {
+                const response = await fetch('/session-user');
+                const user = await response.json();
+
+                if (user) {
+                    document.getElementById('username').textContent = user.username;
+                    document.getElementById('rollNumber').textContent = user.rollNumber; // Display roll number
+                } else {
+                    // Redirect to login if no user is found
+                    window.location.href = '/login';
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                window.location.href = '/login'; // Redirect to login on error
+            }
+        };
+
+        // Open the form modal
+        document.getElementById('request-leave-btn').onclick = function() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('leave-request-modal').style.display = 'block';
+        };
+
+        // Close the form modal
+        function closeForm() {
+            document.getElementById('leave-request-modal').style.display = 'none';
+            window.location.href = '/student'; // Redirect to student page
+        }
+
+        // Open records view
+        document.getElementById('view-records-btn').onclick = async function() {
+            const rollNumber = document.getElementById('rollNumber').textContent;
+            const response = await fetch(`/api/leave-requests/${rollNumber}`);
+            const records = await response.json();
+            displayRecords(records);
+        };
+
+        // Display leave records in a table
+        function displayRecords(records) {
+            const recordsBody = document.getElementById('records-body');
+            recordsBody.innerHTML = ''; // Clear previous entries
+
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.name}</td>
+                    <td>${record.rollNumber}</td>
+                    <td>${record.branch}</td>
+                    <td>${record.dateOfLeave}</td>
+                    <td>${record.dateOfReturn}</td>
+                    <td>${new Date(record.createdAt).toLocaleString()}</td> <!-- Format the date -->
+                    <td>${record.status}</td>
+                `;
+                recordsBody.appendChild(row);
+            });
+
+            document.getElementById('records-container').style.display = 'block'; // Show the records table
+        }
+        
+        // Open JSON records view
+        document.getElementById('view-all-leave-records-btn').onclick = async function() {
+            const response = await fetch('/record'); // Endpoint to fetch all records
+            const records = await response.json();
+            displayAllRecords(records);
+        };
+    
+        // Display all records from records.json
+        function displayAllRecords(records) {
+            const jsonRecordsBody = document.getElementById('json-records-body'); // Reusing same table body element
+            jsonRecordsBody.innerHTML = ''; // Clear previous entries
+    
+            records.forEach(record => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${record.rollNumber}</td>
+        <td>${new Date(record.inTime).toLocaleTimeString()}</td>
+        <td>${new Date(record.inDate).toLocaleDateString()}</td>
+        <td>${new Date(record.outTime).toLocaleTimeString()}</td>
+        <td>${new Date(record.outDate).toLocaleDateString()}</td>
+    `;
+    jsonRecordsBody.appendChild(row);
+});
+
+    
+            document.getElementById('json-records-container').style.display = 'block'; // Show the JSON records table
+        }
+
+  // Close the JSON records view
+        function closeJsonRecords() {
+            document.getElementById('json-records-container').style.display = 'none'; // Hide JSON records
+            document.getElementById('main-page').style.display = 'block'; // Show main page again
+        }
+        // Close the records view
+        function closeRecords() {
+            document.getElementById('records-container').style.display = 'none'; // Hide records
+            document.getElementById('main-page').style.display = 'block'; // Show main page again
+        }
+
+        // Submit leave request form
+        async function submitForm() {
+            const form = document.getElementById('leaveRequestForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Check for empty fields
+            const isFormValid = Object.values(data).every(value => value.trim() !== '');
+            if (!isFormValid) {
+                alert('Please fill in all fields before submitting.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/leave-requests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            alert('Leave request submitted successfully!');
+            closeForm(); // Close the form modal
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Error submitting request: ' + error.message);
+        }
+    }
+
+    document.getElementById('logout-btn').onclick = function() {
+        // Redirect to the login page
+        window.location.href = '/login';
+    }
+        //document.getElementById('logout-btn').onclick = function() {
+            //Redirect to the login page
+           //window.location.href = '/login';}
+
+        // Redirect to QR Code generator page
+        // document.getElementById('my-qr-btn').onclick = function() {
+        //     console.log("success");
+        //     const rollNumber = document.getElementById('rollNumber').textContent;
+        //     window.location.href = `/generateqr.html?rollNumber=${rollNumber}`;
+        // };
+          // Display QR code
+          document.addEventListener("DOMContentLoaded", function() {
+            console.log("btn????");
+            const button = document.getElementById('my-qr-btn');
+            button.onclick = function() {
+                console.log("Button clicked!");
+                const rollNumber = document.getElementById('rollNumber').textContent;
+                window.location.href = `/generateqr.html?rollNumber=${rollNumber}`;
+            };
+        });
+    </script>
+</body>
+</html>

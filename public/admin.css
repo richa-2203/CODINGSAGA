@@ -1,0 +1,90 @@
+/* style.css */
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Use a clean font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #afaac8; /* Light background color */
+}
+
+.header {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center vertically */
+    padding: 30px; /* Padding for header */
+    background-color: #afaac8; /* White background for header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.header h2 {
+    margin: 0; /* Remove default margin */
+}
+
+#req {
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+
+#logout-btn {
+    padding: 10px 15px; /* Padding for button */
+    background-color: #324a5f; /* Button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    width: 10%;
+    height: 40px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+#logout-btn:hover {
+    background-color: #1b2a41; /* Darker button color on hover */
+}
+
+h1 {
+    text-align: left; /* Align heading to the left */
+    margin: 20px 20px; /* Margin around heading */
+}
+
+table {
+    width: 94%; /* Table width */
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse; /* Collapse borders */
+    background-color: #ffffff; /* White background for table */
+    border: 1px solid #ddd; /* Overall table border */
+    font-size: 18px;
+}
+
+th, td {
+    padding: 10px; /* Padding for cells */
+    text-align:center; /* Align text to the left */
+    border: 1px solid #1b2a41; /* Border for each cell */
+}
+
+th {
+    background-color: #1b2a41; /* Header color */
+    color: white; /* Header text color */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+button {
+    padding: 10px 10px; /* Padding for buttons */
+    border: 20px; /* No border */
+    background-color: #324a5f;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button:hover {
+    background-color: #1b2a41; /* Change background on hover */
+}
